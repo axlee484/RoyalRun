@@ -730,12 +730,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: obstaclePrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: 'obstaclePrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: -3231887615743474111, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
+    - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
+      propertyPath: 'obstaclePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8251334147118404140, guid: 5089f11bbfc62814e91ebc5941b5d531, type: 3}
     - target: {fileID: 234263741398374454, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: m_Size.x
       value: 5
