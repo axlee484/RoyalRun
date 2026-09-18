@@ -6,9 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Vector2 movement;
-    [SerializeField] Rigidbody body;
-    [SerializeField] float horizontalSpeed = 1f;
-    [SerializeField] Bounds boundingBox;
+    private Rigidbody body;
+    [SerializeField] private float horizontalSpeed = 1f;
+    [SerializeField] private Bounds boundingBox;
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+    }
     public void Move(InputAction.CallbackContext moveData)
     {
         movement = moveData.ReadValue<Vector2>();
