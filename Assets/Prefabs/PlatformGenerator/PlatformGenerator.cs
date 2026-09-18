@@ -7,6 +7,7 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private int chunkCount = 5;
     [SerializeField] private GameObject chunkParent;
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float destructionOffset = 10f;
     public float MoveSpeed => moveSpeed;
     public void SetMoveSpeed(float value) => moveSpeed = value;
     private readonly List<Chunk> chunksContainer = new();
@@ -19,7 +20,7 @@ public class PlatformGenerator : MonoBehaviour
         {
             var chunk = chunksContainer[i];
             chunk.transform.Translate(moveSpeed * Time.fixedDeltaTime * Vector3.back);
-            if(chunk.transform.position.z < Camera.main.transform.position.z)
+            if(chunk.transform.position.z < Camera.main.transform.position.z - destructionOffset)
             {
                 RemoveChunk(chunk);
                 GenerateNewChunk(startPosition);
