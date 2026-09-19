@@ -38,7 +38,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private void GenerateNewChunk()
     {
-        var newPosition = lastChunk != null? lastChunk.transform.position : Vector3.zero;
+        var newPosition = lastChunk != null? lastChunk.transform.position : Vector3.back*zLength;
         newPosition.z += zLength;
         var chunk = Instantiate(platformChunkPrefab, newPosition, Quaternion.identity, chunkParent.transform);
         chunksContainer.Add(chunk);

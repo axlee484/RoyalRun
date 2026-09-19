@@ -48,13 +48,12 @@ public class Chunk : MonoBehaviour
        
     }
 
+
     private void Start()
     {
-        enabled = false;
         lanePositions = GameManager.Instance.LanePostions.ToArray();
         minimumSafeLanes = GameManager.Instance.MinimumSafeLanes;
         SpawnObstacles();
-        enabled = true;
     }
 
 }
