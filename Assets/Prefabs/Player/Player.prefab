@@ -184,6 +184,7 @@ MonoBehaviour:
   boundingBox:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 2, y: 2, z: 2}
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &7392401709905289639
 Rigidbody:
   m_ObjectHideFlags: 0
