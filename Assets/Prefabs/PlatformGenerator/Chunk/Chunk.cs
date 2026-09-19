@@ -8,6 +8,8 @@ public class Chunk : MonoBehaviour
     [SerializeField] private Vector3 tileSize = Vector3.one;
     [SerializeField] private Pickable[] pickablePrefabs;
     [SerializeField] private BaseObstacle[] obstaclePrefabs;
+    [SerializeField] private int maxCoins = 5;
+    [SerializeField] private float groupPickableSpace = 2f;
     public Vector3 TileSize => tileSize;
     [SerializeField] private GameObject asset;
     private Vector3[] lanePositions;
@@ -41,14 +43,27 @@ public class Chunk : MonoBehaviour
         }
     }
 
+    private void SpawnPickable(Pickable pickablePrefab, Vector3 startPosition, float count)
+    {
+        var position = startPosition;
+        for(var i =0; i<count; i++)
+        {
+            var point = asset.transform.TransformPoint(position);
+            Instantiate(pickablePrefab,point,Quaternion.identity, asset.transform);
+            position.z -= groupPickableSpace;
+        }
+    }
+
     private void SpawnPickables(int[] pickableLanes)
     {
        var pickableCount = Random.Range(0, pickableLanes.Length);
        for(var i =0; i<pickableCount; i++)
         {
             var pickablePrefab = pickablePrefabs[Random.Range(0, pickablePrefabs.Length)];
-            var point = asset.transform.TransformPoint(lanePositions[pickableLanes[i]]);
-            Instantiate(pickablePrefab,point,Quaternion.identity, asset.transform);
+            var groupCount = 1;
+            if(pickablePrefab.TryGetComponent<Coin>(out var coin)) groupCount = Random.Range(groupCount, maxCoins);
+            SpawnPickable(pickablePrefab, lanePositions[pickableLanes[i]], groupCount);
+
         }
     }
 
