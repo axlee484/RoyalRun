@@ -12,6 +12,8 @@ public class PlatformGenerator : MonoBehaviour
     public void SetMoveSpeed(float value) => moveSpeed = value;
     private readonly List<Chunk> chunksContainer = new();
     private Vector3 startPosition;
+    private Chunk lastChunk;
+    private float zLength;
 
 
     private void MoveChunk()
@@ -23,7 +25,7 @@ public class PlatformGenerator : MonoBehaviour
             if(chunk.transform.position.z < Camera.main.transform.position.z - destructionOffset)
             {
                 RemoveChunk(chunk);
-                GenerateNewChunk(startPosition);
+                GenerateNewChunk();
             }
         }
     }
@@ -34,27 +36,30 @@ public class PlatformGenerator : MonoBehaviour
         Destroy(chunk.gameObject);
     }
 
-    private void GenerateNewChunk(Vector3 position)
+    private void GenerateNewChunk()
     {
-        var chunk = Instantiate(platformChunkPrefab, position, Quaternion.identity, chunkParent.transform);
+        var newPosition = lastChunk != null? lastChunk.transform.position : Vector3.zero;
+        newPosition.z += zLength;
+        var chunk = Instantiate(platformChunkPrefab, newPosition, Quaternion.identity, chunkParent.transform);
         chunksContainer.Add(chunk);
+        lastChunk = chunk;
     }
     private void GenerateChunks()
     {
-        var zLength = platformChunkPrefab.TileSize.z;
+        
         var startPosZ = transform.position.z + (chunkCount/2)*zLength;
-
         startPosition.z = startPosZ;
         var pos = startPosition;
 
         for(var i =0; i<chunkCount; i++)
         {
-            GenerateNewChunk(pos);
+            GenerateNewChunk();
             pos.z -= zLength;
         }
     }
     private void Awake()
     {
+        zLength = platformChunkPrefab.TileSize.z;
         GenerateChunks();
     }
 

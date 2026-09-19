@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,41 +11,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float horizontalSpeed = 1f;
     [SerializeField] private Bounds boundingBox;
     [SerializeField] private Animator animator;
-    private Vector3[] lanePostions;
     private int currentLaneIndex = 0;
+    private Vector3[] lanePositions;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
     }
 
-    private void InitializeLanePositions()
-    {
-        var laneCount = GameManager.Instance.LaneCount;
-        var platformWidth = GameManager.Instance.PlatformWidth;
-        lanePostions = new Vector3[laneCount];
-        var initPos = Vector3.zero;
-
-
-        var laneWidth = (float)platformWidth/laneCount;
-        initPos.x = (float)laneWidth/2-(float)platformWidth/2;
-
-        for(var i =0; i<laneCount; i++)
-        {
-            lanePostions[i] = initPos;
-            initPos.x += laneWidth;
-        }
-        currentLaneIndex = laneCount/2;
-    }
+    
     private void Start()
     {
-        InitializeLanePositions();
-        body.position = ClampVector3(lanePostions[0], boundingBox);
+        lanePositions = new List<Vector3>(GameManager.Instance.LanePostions).ToArray();
+        currentLaneIndex = GameManager.Instance.LaneCount/2;
+        body.position = ClampVector3(GameManager.Instance.LanePostions[currentLaneIndex], boundingBox);
     }
 
     private void MoveToCurrentLaneIndex()
     {
-        var targetPosition = lanePostions[currentLaneIndex];
+        var targetPosition = lanePositions[currentLaneIndex];
 
         float newX = Mathf.MoveTowards(
             body.position.x,
@@ -66,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveRight()
     {
-        if(currentLaneIndex == lanePostions.Length-1) return;
+        if(currentLaneIndex == lanePositions.Length-1) return;
         currentLaneIndex++;
     }
 
