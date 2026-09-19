@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody body;
     [SerializeField] private float horizontalSpeed = 1f;
     [SerializeField] private Bounds boundingBox;
+    [SerializeField] private Animator animator;
     private Vector3[] lanePostions;
     private int currentLaneIndex = 0;
 
@@ -68,12 +69,19 @@ public class PlayerController : MonoBehaviour
         if(currentLaneIndex == lanePostions.Length-1) return;
         currentLaneIndex++;
     }
+
+    private void Jump()
+    {
+        // body.AddForce(Vector3.up*10, ForceMode.Impulse);
+        // animator.SetTrigger("Jump");
+    }
     public void Move(InputAction.CallbackContext moveData)
     {
         if(!moveData.performed) return;
         movement = moveData.ReadValue<Vector2>();
         if(movement.x>0) MoveRight();
         if(movement.x<0) MoveLeft();
+        // if(movement.y>0) Jump();
     }
 
     private Vector3 ClampVector3(Vector3 vector3, Bounds bounds)

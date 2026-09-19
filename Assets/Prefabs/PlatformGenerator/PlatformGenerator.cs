@@ -45,7 +45,6 @@ public class PlatformGenerator : MonoBehaviour
         var startPosZ = transform.position.z + (chunkCount/2)*zLength;
 
         startPosition.z = startPosZ;
-        startPosition.y -= platformChunkPrefab.TileSize.y;
         var pos = startPosition;
 
         for(var i =0; i<chunkCount; i++)

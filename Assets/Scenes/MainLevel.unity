@@ -573,16 +573,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: obstaclePrefabs.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: 'obstaclePrefabs.Array.data[0]'
       value: 
-      objectReference: {fileID: 8251334147118404140, guid: 5089f11bbfc62814e91ebc5941b5d531, type: 3}
+      objectReference: {fileID: 8926985710498387510, guid: 87be496f8c8249785af606a9c732583a, type: 3}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: 'obstaclePrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 8926985710498387510, guid: 87be496f8c8249785af606a9c732583a, type: 3}
+      objectReference: {fileID: 8251334147118404140, guid: 5089f11bbfc62814e91ebc5941b5d531, type: 3}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: 'obstaclePrefabs.Array.data[2]'
       value: 
@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: 'obstaclePrefabs.Array.data[4]'
       value: 
       objectReference: {fileID: -3231887615743474111, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
+    - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
+      propertyPath: 'obstaclePrefabs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 4883689962626715567, guid: f9c10eaa25c58bd6d85eafc85ea3eb71, type: 3}
     - target: {fileID: 234263741398374454, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: m_Size.x
       value: 5
@@ -661,17 +665,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3302909460398298656, guid: c2b3b8b2f3ec3cc66a252a7b621a9f17, type: 3}
-      propertyPath: chunkCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: -3302909460398298656, guid: c2b3b8b2f3ec3cc66a252a7b621a9f17, type: 3}
       propertyPath: chunkParent
       value: 
       objectReference: {fileID: 892340260}
-    - target: {fileID: -3302909460398298656, guid: c2b3b8b2f3ec3cc66a252a7b621a9f17, type: 3}
-      propertyPath: platformChunkPrefab
-      value: 
-      objectReference: {fileID: 6353466577585387563, guid: aa8cf8376159ea06c877f0644a8cebad, type: 3}
     - target: {fileID: 1973371550537596166, guid: c2b3b8b2f3ec3cc66a252a7b621a9f17, type: 3}
       propertyPath: m_Name
       value: PlatformGenerator

@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c66894f4ceed58c880abc621074c370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformGenerator
+  platformChunkPrefab: {fileID: 6353466577585387563, guid: aa8cf8376159ea06c877f0644a8cebad, type: 3}
+  chunkCount: 30
+  chunkParent: {fileID: 0}
+  moveSpeed: 10
+  destructionOffset: 10
