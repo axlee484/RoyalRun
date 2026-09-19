@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2786192591066520073, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 66527a65c2613a69cb182f4deba32360, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1402377823673197558, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
