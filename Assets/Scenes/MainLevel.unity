@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: obstaclePrefabs.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1057515484639075952, guid: bd409f84c15c0b89f9b290d5a04d32a6, type: 3}
       propertyPath: 'obstaclePrefabs.Array.data[0]'
@@ -729,14 +729,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4335441925068637273, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
-      propertyPath: startPos.x
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4335441925068637273, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
-      propertyPath: boundingBox.m_Extent.x
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5732236824018128132, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -776,14 +768,6 @@ PrefabInstance:
     - target: {fileID: 5732236824018128132, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392401709905289639, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
-      propertyPath: m_Constraints
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392401709905289639, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
-      propertyPath: m_ImplicitCom
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7879187234812230378, guid: 8ba3a8e443d6b50ce97c5aad365c722c, type: 3}
       propertyPath: m_Name

@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private BaseObstacle[] obstaclePrefabs;
+    [SerializeField] private List<BaseObstacle> obstaclePrefabs = new();
     [SerializeField] private GameObject obstacleContainer;
     [SerializeField] private float horizontalAcceleration = 9.8f;
     private Bounds spawnArea;
@@ -16,6 +17,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void Start()
     {
+        if(obstaclePrefabs.Count ==0) return;
         StartCoroutine(SpawnObstacleCoroutine());
     }
 
@@ -28,6 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void SpawnObstacle(BaseObstacle obstaclePrefab)
     {
+        if(obstaclePrefab == null) return;
         var spawnPoint = GetRandomPointVector3(spawnArea);
         var obstacle = Instantiate(obstaclePrefab, spawnPoint, Random.rotation, obstacleContainer.transform);
         obstacle.SetHorizontalAcceleration(horizontalAcceleration);
@@ -38,7 +41,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while (true)
         {
-            var randId = Random.Range(0, obstaclePrefabs.Length);
+            var randId = Random.Range(0, obstaclePrefabs.Count);
             var prefab = obstaclePrefabs[randId];
             SpawnObstacle(prefab);
             yield return new WaitForSeconds(spawnTime);

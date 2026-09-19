@@ -38,18 +38,42 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         InitializeLanePositions();
-        body.position = ClampVector3(lanePostions[currentLaneIndex], boundingBox);
+        body.position = ClampVector3(lanePostions[0], boundingBox);
     }
 
+    private void MoveToCurrentLaneIndex()
+    {
+        var targetPosition = lanePostions[currentLaneIndex];
+
+        float newX = Mathf.MoveTowards(
+            body.position.x,
+            targetPosition.x,
+            horizontalSpeed * Time.fixedDeltaTime
+        );
+
+        body.MovePosition(new Vector3(
+            newX,
+            body.position.y,
+            body.position.z
+        ));
+    }
     private void MoveLeft()
     {
         if(currentLaneIndex == 0) return;
         currentLaneIndex--;
+    }
 
+    private void MoveRight()
+    {
+        if(currentLaneIndex == lanePostions.Length-1) return;
+        currentLaneIndex++;
     }
     public void Move(InputAction.CallbackContext moveData)
     {
+        if(!moveData.performed) return;
         movement = moveData.ReadValue<Vector2>();
+        if(movement.x>0) MoveRight();
+        if(movement.x<0) MoveLeft();
     }
 
     private Vector3 ClampVector3(Vector3 vector3, Bounds bounds)
@@ -59,12 +83,9 @@ public class PlayerController : MonoBehaviour
         vector3.z = Mathf.Clamp(vector3.z, bounds.min.z, bounds.max.z);
         return vector3;
     }
+
     private void FixedUpdate()
     {
-        if(movement == Vector2.zero) return;
-        var xDirection = Math.Sign(movement.x);
-        var newPosition = body.position + horizontalSpeed * Time.fixedDeltaTime * xDirection * Vector3.right;
-        newPosition = ClampVector3(newPosition, boundingBox);
-        body.MovePosition(newPosition);
+        MoveToCurrentLaneIndex();
     }
 }
