@@ -29,23 +29,39 @@ public class Chunk : MonoBehaviour
         }
         return randomLanes.ToArray();
     }
-    private void SpawnObstacles()
+    private void SpawnObstacles(int[] obstacleLanes)
     {
-        var obstacleCount = Random.Range(0, lanePositions.Length-minimumSafeLanes+1);
-        var obstacleLanes = PickRandomPositions(obstacleCount);
         var prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
 
-        for(var i =0; i<obstacleCount; i++)
+        for(var i =0; i<obstacleLanes.Length; i++)
         {
             var point = asset.transform.TransformPoint(lanePositions[obstacleLanes[i]]);
             Instantiate(prefab,point,Quaternion.identity, asset.transform);
         }
     }
 
-    private void SpawnPickables()
+    private void SpawnPickables(int[] pickableLanes)
     {
-       
+       var pickableCount = Random.Range(0, pickableLanes.Length);
+       for(var i =0; i<pickableCount; i++)
+        {
+            var pickablePrefab = pickablePrefabs[Random.Range(0, pickablePrefabs.Length)];
+            var point = asset.transform.TransformPoint(lanePositions[pickableLanes[i]]);
+            Instantiate(pickablePrefab,point,Quaternion.identity, asset.transform);
+        }
+    }
+
+    private void CreateSpawnables()
+    {
+        var obstacleCount = Random.Range(0, lanePositions.Length-minimumSafeLanes+1);
+        var randomLanes = PickRandomPositions(obstacleCount);
+        var obstacleLanes = randomLanes[..obstacleCount];
+        var pickupLanes = randomLanes[obstacleCount..];
+
+
+        SpawnObstacles(obstacleLanes);
+        SpawnPickables(pickupLanes);
     }
 
 
@@ -53,7 +69,7 @@ public class Chunk : MonoBehaviour
     {
         lanePositions = GameManager.Instance.LanePostions.ToArray();
         minimumSafeLanes = GameManager.Instance.MinimumSafeLanes;
-        SpawnObstacles();
+        CreateSpawnables();
     }
 
 }

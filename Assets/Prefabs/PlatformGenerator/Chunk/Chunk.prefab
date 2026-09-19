@@ -138,8 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
   tileSize: {x: 10, y: 2, z: 10}
   pickablePrefabs:
-  - {fileID: -2721299464751645726, guid: a6f09a0632366280c8267a39742cc2ff, type: 3}
-  - {fileID: -3566076694380206634, guid: 957b1ce10e6c17a5b9b5ebcd6545ee18, type: 3}
+  - {fileID: 6568230169326566219, guid: e63e3d1e9260ef71380754527064d70e, type: 3}
+  - {fileID: 6568230169326566219, guid: 35ea142c313e60254a43b0907ad5215a, type: 3}
   obstaclePrefabs:
   - {fileID: 3176825631799816881, guid: 7764d85820726375c98135b4d6d39ae6, type: 3}
   asset: {fileID: 5020808320202446313}

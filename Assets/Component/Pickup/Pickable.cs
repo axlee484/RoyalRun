@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class Pickable: MonoBehaviour
+public class Pickable: MonoBehaviour
 {
     public virtual void DestroySelf()
     {
@@ -10,6 +10,9 @@ public abstract class Pickable: MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider collision)
     {
-        if(collision.TryGetComponent<Player>(out var player)) DestroySelf();
+        if(collision.GetComponentInParent<Player>())
+        {
+            DestroySelf();
+        }
     }
 }
