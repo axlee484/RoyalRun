@@ -200,6 +200,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 5308233579954706992, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308233579954706992, guid: baf459e3c11716b32964dd1d662ff730, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1402377823673197558, guid: baf459e3c11716b32964dd1d662ff730, type: 3}

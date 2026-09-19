@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BaseObstacle : MonoBehaviour
 {
+    private const string cleaupAreaTag = "cleanup";
     // [SerializeField] private GameObject obstacle;
     private Rigidbody body;    // Update is called once per frame
     private float horizontalAcceleration = 0f;
@@ -14,6 +15,14 @@ public class BaseObstacle : MonoBehaviour
     private void FixedUpdate()
     {
         body.AddForce(Vector3.back * horizontalAcceleration, ForceMode.Acceleration);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.CompareTag(cleaupAreaTag))
+        {
+            Destroy(gameObject);
+        }
     }
 
 
