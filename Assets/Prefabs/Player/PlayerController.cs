@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float laneChangeSpeed = 8f;
     [SerializeField] private float jumpForce = 5f;
+    private float tripCountdown = 0f;
+    private float minTripTime = 1f;
+    private bool isTripping;
 
     [Header("References")]
     [SerializeField] private Bounds boundingBox;
@@ -50,6 +53,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MoveToCurrentLane();
+        if (isTripping)
+        {
+            tripCountdown += Time.fixedDeltaTime;
+            if(tripCountdown >= minTripTime)
+            {
+                isTripping = false;
+                tripCountdown = 0f;
+            }
+            
+        }
     }
 
     private void MoveToCurrentLane()
@@ -130,6 +143,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.TryGetComponent<BaseObstacle>(out var obstacle))
+        {
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                float verticalAmount = Vector3.Dot(contact.normal, Vector3.up);
+
+                // Landing on top -> ignore
+                if (verticalAmount > 0.5f)
+                    continue;
+                if(isTripping) return;
+                isTripping = true;
+                
+                // Side/bottom collision -> handle obstacle
+                animator.SetTrigger("Trip");
+            }
+        }
         // Simple version: touching something below means landed.
         foreach (ContactPoint contact in collision.contacts)
         {
