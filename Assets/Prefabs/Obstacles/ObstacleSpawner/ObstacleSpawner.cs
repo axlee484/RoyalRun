@@ -30,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         var spawnPoint = GetRandomPointVector3(spawnArea);
         var obstacle = Instantiate(obstaclePrefab, spawnPoint, Random.rotation, obstacleContainer.transform);
-        obstacle.ApplyHorizontalForce(horizontalAcceleration);
+        obstacle.SetHorizontalAcceleration(horizontalAcceleration);
     }
 
 
